@@ -1,0 +1,39 @@
+/*
+struct ListNode {
+	int val;
+	struct ListNode *next;
+	ListNode(int x) :
+			val(x), next(NULL) {
+	}
+};*/
+class Solution {
+public:
+    /**
+    *两个points比那里链表，一个先走，到第k个时两个一起走，这样一个到尾结点是，两一个所指即为倒数第k个结点
+    *如果整个链表没有K个结点怎么办，返回第一个结点？不是
+    *为负数怎么办？要错误处理吗？链表有头结点吗？
+    *链表为空，k为0返回NULL
+    */
+    bool g_InvalidInput = false;
+    ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
+        if(pListHead==NULL||k==0)
+            return NULL;
+            
+        ListNode *p = pListHead;
+        ListNode *q = pListHead;
+        int i = 1;
+        while(p->next!=NULL)
+        {
+            i++;
+            p = p->next;
+            if(i>k)
+            {
+               q = q->next; 
+            }   
+        }
+        if(i<k)
+            return NULL;
+        return q;
+
+    }
+};

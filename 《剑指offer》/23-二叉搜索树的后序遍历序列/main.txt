@@ -1,0 +1,32 @@
+class Solution {
+private:
+    bool bst(vector<int> seq,int begin,int end)
+    {
+        int root = seq[end];
+        int i= begin;
+        for(i;i<end;i++)
+        {
+            if(seq[i]>root)
+                break;
+        }
+        int j = i;
+        for(j;j<end;j++)
+        {
+            if(seq[j]<root)
+                return false;
+        }
+        bool left = true;
+        if(i>begin)
+            left = bst(seq,begin,i-1);
+        bool right = true;
+        if(j<end)
+            right = bst(seq,j,end-1);
+        return left&&right;
+    }
+public:
+    bool VerifySquenceOfBST(vector<int> sequence) {
+        if(sequence.empty())
+            return false;
+        return bst(sequence,0,sequence.size()-1);
+    }
+};

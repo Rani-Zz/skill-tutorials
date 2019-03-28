@@ -1,0 +1,37 @@
+class Solution {
+public:
+	void replaceSpace(char *str,int length) {
+        if(str==""||length<=0)
+            return ;
+        // 统计又多少个空格
+        int blankCount = 0;
+        int i = 0;
+        int originalLength = 0;
+        while(str[i]!='\0')
+        {
+            if(str[i]==' ')
+                blankCount++;
+            i++;
+            originalLength++;
+        }
+        //新的长度
+        int newLength = originalLength +　blankCount*2;
+        if(newLength>length)
+            return;
+        
+        for(newLength,originalLength;newLength>originalLength;)
+        {
+            if(str[originalLength]!= ' ')
+            {
+                str[newLength--] = str[originalLength--];
+            }else{
+                str[newLength--] = '0';
+                str[newLength--] = '2';
+                str[newLength--] = '%';
+                originalLength--;
+            }
+        }
+        return;
+        
+	}
+};

@@ -1,0 +1,27 @@
+class Solution {
+public
+    bool Find(int target, vectorvectorint  array) {
+       if(array.empty())
+           return false;
+        行 列
+        int row = array.size();
+        int column = array[0].size();
+        从左上角开始找
+        int r = 0,c = column-1;
+        bool res = false;
+        while(rrow&&c=0)
+        {
+            if(array[r][c]==target)
+            {
+                res = true;
+                break;
+            } else if(array[r][c]target)
+                c--;
+                else
+                    r++;
+        }
+        
+        return res;
+            
+    }
+};

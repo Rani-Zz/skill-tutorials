@@ -1,0 +1,26 @@
+class Solution {
+public:
+    /**
+    *冒泡算法的思路解决
+    *前偶后奇就交换
+    */
+    void reOrderArray(vector<int> &array) {
+        if(array.empty())
+            return ;
+        for(int i = 0;i<array.size();i++)
+        {
+            bool flag = false;
+            for(int j = array.size()-1;j>i;j--)
+            {
+                if((array[j-1]%2==0)&&(array[j]%2==1))
+                {
+                    swap(array[j],array[j-1]);
+                    flag = true;
+                }
+            }
+            if(!flag) //减少循环次数
+                return;
+        }
+        return;
+    }
+};
