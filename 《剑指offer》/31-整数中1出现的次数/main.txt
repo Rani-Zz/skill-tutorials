@@ -1,0 +1,27 @@
+class Solution {
+public:
+    /**
+    *个位：每隔10有一个 n/10*1（统计完整数了） k = n%10<1没有了，否则有1个
+    *十位：每隔100有10个，n/100*10     k = n%100>19有10个<10没有了否则k-10+1
+    *百位：每隔1000有100个，n/1000*100  k = n%1000>199有100个<100没有了否则k-100+1
+    *不是特别清晰
+    */
+    int NumberOf1Between1AndN_Solution(int n)
+    {
+        if(n<=0)
+            return 0;
+        int count = 0;
+        for(long i = 1;i<=n;i*=10)
+        {
+            long d = i*10;
+            count+=(n/d)*i;
+            if(n%d > i * 2 - 1) 
+                count+=i;
+            else if(n%d < i) 
+                count+=0; 
+            else count+=n%d - i + 1;
+        }
+        return count;
+    }
+    
+};
