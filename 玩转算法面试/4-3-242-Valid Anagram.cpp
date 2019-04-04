@@ -11,7 +11,7 @@ public:
             return true;
         if(s.length()!=t.length())
             return false;
-        map<char,int> mp;
+        unordered_map<char,int> mp;
         for(auto c:s)
             mp[c]++;
         for(auto c:t)

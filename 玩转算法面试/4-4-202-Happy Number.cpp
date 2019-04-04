@@ -17,7 +17,7 @@ public:
     *结果不为1是一直计算，把结果结果保存下来，当出现重复时return false
     */
     bool isHappy(int n) {
-        set<int> record;
+        unordered_set<int> record;
         while(n!=1)
         {
             if(record.find(n)!=record.end())
