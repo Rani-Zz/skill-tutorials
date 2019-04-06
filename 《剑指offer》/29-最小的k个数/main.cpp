@@ -1,28 +1,25 @@
 class Solution {
 public:
     /**
-    *维护大小为k的priority_queue,默认最大堆
-    *不知道为什么会超时通不过
+    *维护一个包含k个数字的pq
+    *用最大堆
     */
     vector<int> GetLeastNumbers_Solution(vector<int> input, int k) {
         vector<int> res;
-        if(input.empty()||k>input.size())
+        if(input.empty()||k>input.size()||k<1)
             return res;
-        
-        priority_queue<int ,vector<int>> pq;
+        priority_queue<int, vector<int>> pq;
         for(int i = 0;i<input.size();i++)
         {
-            if(pq.size()==k)
-           {
-			if(input[i]<pq.top())
-			{
+            if(pq.size()<k)
+            {
+                pq.push(input[i]);
+            }else if(input[i]<pq.top())
+            {
                 pq.pop();
                 pq.push(input[i]);
             }
-           }else
-            pq.push(input[i]);
         }
-        
         while(!pq.empty())
         {
             res.push_back(pq.top());
