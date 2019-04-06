@@ -1,0 +1,51 @@
+class Solution {
+private:
+    int InversePairsCore(vector<int> &data,vector<int> &copy,int begin,int end)
+    {
+        if(begin==end)
+        {
+            copy[begin] = data[begin];
+            return 0;
+        }
+        int mid = (end+begin)/2;
+        int left = InversePairsCore(data,copy,begin,mid);
+        int right = InversePairsCore(data,copy,mid+1,end);
+        
+        int i = mid;
+        int j = end;
+        int indexCopy = end;
+        int count = 0;
+        while(i>=begin&&j>=mid+1)
+        {
+            if(data[i]>data[j])
+            {
+                count+=j-mid;
+                copy[indexCopy--] = data[i--];//ÅÅÐò
+            }else
+            {
+                 copy[indexCopy--] = data[j--];
+            }
+        }
+        while(i>=begin)
+        {
+            copy[indexCopy--] = data[i--];
+        }
+        while(j>=mid+1)
+        {
+             copy[indexCopy--] = data[j--];
+        }
+        
+        return count+left+right;
+        
+    }
+public:
+    int InversePairs(vector<int> data) {
+        if(data.empty())
+            return 0;
+        vector<int> copy;
+        for(auto i:data)
+            copy.push_back(i);
+        int count = InversePairsCore(data,copy,0,data.size()-1);
+        return count%1000000007;
+    }
+};
