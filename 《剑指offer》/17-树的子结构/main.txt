@@ -9,30 +9,31 @@ struct TreeNode {
 };*/
 class Solution {
 private:
-    bool isSubtree(TreeNode* pRoot1, TreeNode* pRoot2)
+    bool isSubtree(TreeNode* root1,TreeNode* root2)
     {
-        if(pRoot2==NULL) return true;//子树遍历完了
-        if(pRoot1==NULL) return false;
-        bool retult = true;
-        if(pRoot1->val!=pRoot2->val) retult = false;
+        if(root2==NULL) return true;
+        if(root1==NULL) return false;
         
-        if(retult) retult = isSubtree(pRoot1->left, pRoot2->left);
-        if(retult) retult = isSubtree(pRoot1->right, pRoot2->right);
-        return retult;
+        if(root1->val!=root2->val) return false;
+        bool res = true;
+        if(res) res = isSubtree(root1->left,root2->left);
+        if(res) res = isSubtree(root1->right,root2->right);
+        return res;
     }
 public:
     /**
-    *在树种找到子树根节点，然后比较两个子树是否相同
+    *前序遍历，先找到子树的根节点，再判断子树是否相同
+    *如果不同的话要继续找，不能直接返回false
     */
     bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2)
     {
         if(pRoot1==NULL||pRoot2==NULL)
             return false;
-        bool result = false;
+        bool res = false;
         if(pRoot1->val==pRoot2->val)
-            result =  isSubtree(pRoot1,pRoot2);//判断两个子树是否一样
-        if(!result) result = HasSubtree(pRoot1->left, pRoot2);
-        if(!result) result = HasSubtree(pRoot1->right, pRoot2);
-        return result;
+               res =  isSubtree(pRoot1,pRoot2);
+        if(!res) res = HasSubtree(pRoot1->left,pRoot2);
+        if(!res) res = HasSubtree(pRoot1->right,pRoot2);
+        return res;        
     }
 };
