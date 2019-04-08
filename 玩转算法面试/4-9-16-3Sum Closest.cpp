@@ -1,28 +1,28 @@
 class Solution {
 public:
     /**
-    *è·Ÿ3Sumä¸€æ ·
-    è¿˜æ˜¯å¯¹æ’æŒ‡é’ˆï¼Œæ‰¾æœ€æ¥è¿‘çš„
-    *éœ€è¦ä¸€ä¸ªå˜é‡è®°å½•ä¸ç›®æ ‡æ•°çš„å·®
-    *æ³¨æ„è·³è¿‡é‡å¤å¯ä»¥æå‡å¾ˆå¤šè¿˜æœ‰sumä¸ºtargetç›´æ¥è¿”å›
+    *ÏÈÅÅĞò
+    *È·¶¨Ò»¸öÊı£¬È»ºó¶Ô×²Ö¸ÕëÕÒÁíÍâÁ½¸öÊı
+    *ÕÒµ½ºÍ¾ÍÖ±½Ó·µ»Ø£¬²»ÊÇºÍ¾Í±È½Ï½Ó½ü³Ì¶È
     */
     int threeSumClosest(vector<int>& nums, int target) {
-        int gap = INT_MAX;
-        int res =  0;
-        int n = nums.size();
+        if(nums.empty())
+            return 0;
         sort(nums.begin(),nums.end());
+        int minGap = INT_MAX;
+        int res = 0;
+        int n = nums.size();
         for(int i = 0;i<n-2;i++)
         {
-            if(i>0&&nums[i]==nums[i-1]) continue;
-            int l = i+1, r = n-1;
+            int l = i+1,r = n-1;
             while(l<r)
             {
                 int sum = nums[i]+nums[l]+nums[r];
                 if(sum==target) return sum;
-                if(abs(target-sum)<gap)
+                if(abs(sum-target)<minGap)
                 {
                     res = sum;
-                    gap = abs(target-sum);
+                    minGap = abs(sum-target);
                 }
                 if(sum>target) r--;
                 else l++;

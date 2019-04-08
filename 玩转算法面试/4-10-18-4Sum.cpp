@@ -1,46 +1,44 @@
 class Solution {
 public:
     /**
-    *å…ˆæ’åº
-    *a,bè·³è¿‡é‡å¤è·Ÿ3Sumçš„æ–¹æ³•ä¸€æ ·
-    *æ‰€ä»¥è¿˜æ˜¯ç”¨å¯¹æ’æŒ‡é’ˆ
-    *ä¸»è¦æ˜¯è·³è¿‡é‡å¤ä»¥åŠä¸å¯èƒ½çš„ç»“æœï¼Œæå‡æ•ˆç‡
+    *ÏÈÅÅĞò
+    *È·¶¨Á½¸öÔÙÓÃ¶Ô×²Ö¸Õë
+    *½á¹û²»ÄÜÖØ¸´£¬ÒÀÈ»ÒªÌø¹ıËùÓĞÖØ¸´µÄÊı×Ö
+    *»¹ÓĞÒ»¸öÓÅ»¯µã¾øÁË£¬²»¿ÉÄÜµÄ²»¼ÌĞø£¬ÓÃºÃbreak continue
+    *ÖØ¸´ continue ºÍ×îĞ¡µÄ¼ÓÆğÀ´¶¼´ó break ºÍ×î´óµÄÊı¼ÓÆğÀ´¶¼Ğ¡ continue
     */
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
         vector<vector<int>> res;
-        if(nums.size()<4) return res;
+        if(nums.size()<4)
+            return res;
         sort(nums.begin(),nums.end());
         int n = nums.size();
-        
-
-        for(int i = 0;i<n-3;i++)
-        {   
+        for(int i=0;i<n-3;i++)
+        {
             if(i>0&&nums[i]==nums[i-1]) continue;
             if(nums[i]+nums[i+1]+nums[i+2]+nums[i+3]>target) break;
             if(nums[i]+nums[n-1]+nums[n-2]+nums[n-3]<target) continue;
-            for(int j = i+1;j<n-2;j++)
+            for(int j =i+1;j<n-2;j++)
             {
                 if(j>i+1&&nums[j]==nums[j-1]) continue;
                 if(nums[i]+nums[j]+nums[j+1]+nums[j+2]>target) break;
-                if(nums[i]+nums[j]+nums[n-2]+nums[n-1]<target) continue;
+                if(nums[i]+nums[j]+nums[n-1]+nums[n-2]<target) continue;
                 int l = j+1,r = n-1;
-                
                 while(l<r)
                 {
-                    int sum=nums[l]+nums[r]+nums[i]+nums[j];
-                     if(sum<target) l++;
-                    else if(sum>target) r--;
-                    else
-                    {
+                    int sum = nums[i]+nums[j]+nums[l]+nums[r];
+                    if(sum>target)
+                        r--;
+                    else if(sum<target)
+                        l++;
+                    else{
                         res.push_back(vector<int>{nums[i],nums[j],nums[l],nums[r]});
-                        do{l++;}while(nums[l]==nums[l-1]&&l<r);
-                        do{r--;}while(nums[r]==nums[r+1]&&l<r);
+                        do{l++;}while(l<r&&nums[l]==nums[l-1]);
+                        do{r--;}while(l<r&&nums[r]==nums[r+1]);
                     }
-                    
                 }
             }
         }
-               
-        return res;
+          return res;
     }
 };
