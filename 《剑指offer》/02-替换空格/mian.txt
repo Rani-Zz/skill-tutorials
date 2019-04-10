@@ -1,37 +1,35 @@
 class Solution {
 public:
+    /**
+    *先统计空格的数量
+    *然后计算总共的长度
+    *用两个指针，从后向前拷贝
+    */
 	void replaceSpace(char *str,int length) {
         if(str==""||length<=0)
-            return ;
-        // 统计又多少个空格
-        int blankCount = 0;
+            return;
+        int count =0;
         int i = 0;
-        int originalLength = 0;
         while(str[i]!='\0')
         {
             if(str[i]==' ')
-                blankCount++;
+                count++;
             i++;
-            originalLength++;
         }
-        //新的长度
-        int newLength = originalLength +　blankCount*2;
-        if(newLength>length)
-            return;
-        
-        for(newLength,originalLength;newLength>originalLength;)
+        int newLength = length+count*2;
+        int p = length,q = newLength;
+        for(p,q;q>p;)
         {
-            if(str[originalLength]!= ' ')
+            if(str[p]!=' ')
             {
-                str[newLength--] = str[originalLength--];
+                str[q--] = str[p--];
             }else{
-                str[newLength--] = '0';
-                str[newLength--] = '2';
-                str[newLength--] = '%';
-                originalLength--;
+                str[q--] = '0';
+                str[q--] = '2';
+                str[q--] = '%';
+                p--;
             }
         }
-        return;
-        
+        return ;
 	}
 };
