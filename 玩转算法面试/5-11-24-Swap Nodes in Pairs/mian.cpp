@@ -8,30 +8,28 @@
  */
 class Solution {
 public:
-    /**
-    *建立dummy
-    *p从dummy开始 指向交换前的结点
-    *node1 node2交换
-    */
     ListNode* swapPairs(ListNode* head) {
+        if(head==NULL||head->next==NULL)
+            return head;
         ListNode* dummy = new ListNode(-1);
         dummy->next = head;
-        ListNode* p = dummy;
-        while(p->next!=NULL&&p->next->next!=NULL)
+        ListNode* pre = dummy;
+        while(pre->next!=NULL&&pre->next->next!=NULL)
         {
-            ListNode* node1 = p->next;
+            ListNode* node1 = pre->next;
             ListNode* node2 = node1->next;
-            ListNode* next = node2->next;
+            ListNode* s = node2->next;
             
-            p->next = node2;
             node2->next = node1;
-            node1->next = next;
+            pre->next = node2;
+            node1->next = s;
             
-            p = node1;
+            pre = node1;
         }
         
         ListNode* res = dummy->next;
         delete dummy;
+        
         return res;
     }
 };
