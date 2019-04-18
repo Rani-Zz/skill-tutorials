@@ -1,51 +1,46 @@
 class Solution {
 private:
-    int InversePairsCore(vector<int> &data,vector<int> &copy,int begin,int end)
+    int count;
+    void merge(vector<int> data,int begin,int mid,int end)
     {
-        if(begin==end)
+        vector<int> tmp(end-begin+1,0);
+        int i = begin,j = mid+1,k = 0;
+        while(i<=mid&j<=end)
         {
-            copy[begin] = data[begin];
-            return 0;
-        }
-        int mid = (end+begin)/2;
-        int left = InversePairsCore(data,copy,begin,mid);
-        int right = InversePairsCore(data,copy,mid+1,end);
-        
-        int i = mid;
-        int j = end;
-        int indexCopy = end;
-        int count = 0;
-        while(i>=begin&&j>=mid+1)
-        {
-            if(data[i]>data[j])
-            {
-                count+=j-mid;
-                copy[indexCopy--] = data[i--];//≈≈–Ú
-            }else
-            {
-                 copy[indexCopy--] = data[j--];
+            if(data[i]<=data[j])
+                tmp[k++] = data[i++];
+            else{
+                tmp[k++] = data[j++];
+                count=(count+mid-i)%1000000007;;
             }
         }
-        while(i>=begin)
-        {
-            copy[indexCopy--] = data[i--];
-        }
-        while(j>=mid+1)
-        {
-             copy[indexCopy--] = data[j--];
-        }
+        while(i<=mid) tmp[k++] = data[i++];
+        while(j<=end) tmp[k++] = data[j++];
         
-        return count+left+right;
+        for(int i = 0;i<k;i++)
+        {
+            
+            data[begin+i] = tmp[i];
+        }
+        return;
+    }
+    void mergeSort(vector<int> data,int begin,int end)
+    {
+        if(begin>=end)
+            return;
+        int mid = (begin+end)/2;
+        mergeSort(data,begin,mid);
+        mergeSort(data,mid+1,end);
         
+        merge(data,begin,mid,end);
+        return;
     }
 public:
     int InversePairs(vector<int> data) {
         if(data.empty())
             return 0;
-        vector<int> copy;
-        for(auto i:data)
-            copy.push_back(i);
-        int count = InversePairsCore(data,copy,0,data.size()-1);
-        return count%1000000007;
+        count = 0;
+        mergeSort(data,0,data.size()-1);
+        return count;
     }
 };
