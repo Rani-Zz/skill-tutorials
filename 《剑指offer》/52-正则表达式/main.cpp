@@ -12,6 +12,7 @@ public:
                        ii)只匹配1次，也就是当前相等，那依旧跳过‘*’
                           或者匹配多次，str后移1位，模式不变
     *思路还待补充
+    *因为*str == *pattern时有两种情况：匹配0个字符和匹配一次及以上，如ab和a*ab就只需要匹配零个。*str ！= *pattern只有一种情况，就只能匹配0个字符
     */
     bool match(char* str, char* pattern)
     {
