@@ -1,3 +1,9 @@
+#include "SortTestHelper.h"
+#include<iostream>
+#include<vector>
+#include<string>
+#include<algorithm>
+using namespace std;
 //返回p，使得[l,...,p-1]<nums[p] [p+1,...,r]>nums[p]
 int __partition(vector<int> &nums, int l, int r)
 {
@@ -15,12 +21,7 @@ int __partition(vector<int> &nums, int l, int r)
 	swap(nums[l], nums[j]);
 	return j;
 }
-#include "SortTestHelper.h"
-#include<iostream>
-#include<vector>
-#include<string>
-#include<algorithm>
-using namespace std;
+
 void __quickSort1(vector<int> &nums, int l, int r)
 {
 	if (l >= r)
