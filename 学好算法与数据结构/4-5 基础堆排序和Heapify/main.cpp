@@ -16,7 +16,7 @@ void heapSort1(vector<int>& nums)
 	
 	for(int i = 0;i<n;i++)
 	{
-		maxheap.insertItem(nums[i]);
+		maxheap.insert(nums[i]);
 	}
 	
 	for(int i = n-1;i>=0;i--)
