@@ -13,9 +13,9 @@ private:
 	    //上调 跟父结点比较 交换 
 		void shiftUp(int k)
 		{
-			while(k>1&&data[k/2]<data[k])
+			while(k>1&&data[indexes[k/2]]<data[indexes[k]])
 			{
-				swap(data[k/2],data[k]);
+				swap(indexes[k/2],indexes[k]);
 				k/=2;
 			 } 
 		}
@@ -88,4 +88,24 @@ private:
 		{
 			return data[indexes[1]];
 		}	
+	//修改下标为i的数据，用的索引从0开始
+	//所以在data中应该下标为i+1的位置 
+	void change(int i,Item newItem)
+	{
+		i+=1;
+		data[i] = newItem;
+		//维护相应的所以位置
+		//先找到现在的索引在indexes中的位置，再去调整它
+		//顺序查找， 所以时间复杂度O(n) 
+		for(int j=1;j<=count;j++)
+		{
+			if(indexes[j]==i)
+			{
+				shiftUp(j);
+				shiftDown(j);
+				
+				return;
+			}
+		 } 
+	}
 }; 
