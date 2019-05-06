@@ -37,8 +37,8 @@ int __partition2(vector<int> &nums, int l, int r)
 	int i = l + 1, j = r;
 	while (true)
 	{
-		while (i <= r && nums[i] < v) i++; //nums[i] < v而不是 nums[i] <= v这样相等的元素可分到两边不会使两部分不平衡
-		while (j >= l && nums[j] > v) j--;//nums[j] > v 而不是 nums[j] >= v
+		while (i < r && nums[i] < v) i++; //nums[i] < v而不是 nums[i] <= v这样相等的元素可分到两边不会使两部分不平衡
+		while (j > l && nums[j] > v) j--;//nums[j] > v 而不是 nums[j] >= v
 		if (i > j) break;
 		swap(nums[i], nums[j]);
 		i++; j--;
