@@ -1,4 +1,5 @@
 #include <iostream>
+#include<queue>
 
 using namespace std; 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
@@ -147,6 +148,25 @@ using namespace std;
 		{
 			return postOrder(root);
 		 } 
+		 
+		 //≤„–Ú±È¿˙ 
+		 void levelOrder()
+		 {
+		 	queue<Node*> q;
+		 	q.push(root);
+		 	
+		 	while(!q.empty())
+		 	{
+		 		Node* node = q.front();
+		 		q.pop();
+		 		cout<<node->value<<endl;
+				
+				 if(node->left)
+				 q.push(node->left);
+				 if(node->right)
+				 q.push(node->rigit); 
+			 }
+		  } 
  };
  
 int main() {

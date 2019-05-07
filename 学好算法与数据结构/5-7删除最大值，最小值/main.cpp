@@ -1,4 +1,6 @@
 #include <iostream>
+#include<cassert> 
+#include<queue>
 
 using namespace std; 
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
@@ -97,6 +99,56 @@ using namespace std;
 		 	delete node;
 		 	count--;
 		 }
+		 
+		 //寻找最小值 
+		 Node* minimum(Node* node)
+		 {
+		 	if(node->left==NULL)
+		 	return node;
+		 	
+		 	return minimum(node->left);
+		 }
+		 
+		 //寻找最大值 
+		 Node* maximun(Node* node)
+		 {
+		 	if(node->right==NULL)
+		 	return node;
+		 	
+		 	return maximum(node->right);
+		  } 
+		  
+		  //删除最小值 
+		  Node* removeMin(Node* node)
+		  {
+		  	if(node->left==NULL)
+		  	{
+		  		Node* rightNode = node->left;
+		  		delete node;
+		  		count--;
+		  		return rightNode;
+			  }
+			  
+			  root->left = removeMin(node->left);
+			  return node;
+		   } 
+		   
+		   //删除最大值 
+		   Node* removeMax(Node* node)
+		   {
+			   	if(node->right==NULL)
+			   	{
+			   		Node* leftNode = node->left;
+			   		delete node;
+			   		count--;
+			   		return leftNode;
+				}
+				
+				node->right = removeMax(node->right);
+				return node;
+				
+			   
+		   }
     public:
     	BST(){
     		root = NULL;
@@ -147,6 +199,59 @@ using namespace std;
 		{
 			return postOrder(root);
 		 } 
+		 
+		 //层序遍历 
+		 void levelOrder()
+		 {
+		 	queue<Node*> q;
+		 	q.push(root);
+		 	
+		 	while(!q.empty())
+		 	{
+		 		Node* node = q.front();
+		 		q.pop();
+		 		cout<<node->value<<endl;
+				
+				 if(node->left)
+				 q.push(node->left);
+				 if(node->right)
+				 q.push(node->rigit); 
+			 }
+		} 
+		//最小值 
+		Key minimum()
+		{
+			assert(count>0);
+			Node* node = minimum(root);
+			return node->key;
+		 } 
+		 
+		 //最大值 
+		 Key maximum()
+		 {
+		 	assert(count>0);
+		 	Node* node = maximum(root);
+		 	
+		 	return node->key;
+		  } 
+		  
+		  //移除最小值 
+		  void removeMin()
+		  {
+		  	if(root)
+		  	{
+		  		root = removeMin(root);
+			  }
+		  }
+		  
+		  //移除最大值 
+		  void removeMax()
+		  {
+		  	if(root)
+		  	{
+		  		root = removeMax(root);
+			  }
+		   } 
  };
  
 int main() {
