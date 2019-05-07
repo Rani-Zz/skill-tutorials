@@ -1,3 +1,6 @@
+#include <iostream>
+#include<vector>
+using namespace std; 
 //非递归 
 int BinarySearch(vector<int> nums,int target)
 {
@@ -26,9 +29,6 @@ int BinarySearch(vector<int> nums,int target)
 	return -1;
 }
 //递归
-#include <iostream>
-#include<vector>
-using namespace std; 
 //非递归算法在性能上有微弱优势
 int __BinarySearch2(vector<int> nums,int l,int r,int target)
 {
