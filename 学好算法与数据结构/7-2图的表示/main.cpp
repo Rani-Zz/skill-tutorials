@@ -55,6 +55,63 @@ class DenseGraph{
 			return;
 		}
 };
+
+//领接表 
+//稀疏图 
+class SparseGraph{
+	private:
+		int n,m;//n结点个数 m 边个数
+		bool isdirected;//是否有向
+		vector<vector<int>> g;
+	public:
+		SparseGraph(int n,int m,vector<vector<int>> g):n(n),m(m),g(g){
+		}	
+		~SparseGraph(){
+		}
+		
+		//返回结点个数 
+		int V()
+		{
+			return n; 
+		} 
+		
+		int E()
+		{
+			return m;
+		 } 
+		
+		bool hasEdge(int v,int w)
+		{
+			assert(v>=0&&v<n);
+			assert(v>=0&&v<n);
+			
+			for(int i = 0;i<g[v].size();i++)
+			{
+				if(g[v][i]==w)
+				return true;
+			}
+			
+			return false;
+		}
+		
+		void addEdge(int v,int w)
+		{
+			assert(v>=0&&v<n);
+			assert(v>=0&&v<n);
+			
+			if(hasEdge(v,w))
+				return;
+				
+			g[v].push_back(w);
+			if(v!=w&&isdirected)
+				g[w].push_back(v);
+			
+			m++;	
+			return;
+		}
+	 
+};
+
 int main() {
 
 	return 0;
