@@ -6,7 +6,7 @@
 #include<cassert> 
 using namespace std; 
 //寻路算法 寻找一个结点到其他点的路径
-template <typename Graph>;
+template <typename Graph>
 class Path{
 	private:
 		Graph &G;
@@ -81,7 +81,7 @@ class Path{
 		void showPath(int w)
 		{
 			vector<int> vec;
-			path(w,vec);
+			printPath(w,vec);
 			for(int i = 0;i<vec.size();i++)
 			{
 				cout<<vec[i];

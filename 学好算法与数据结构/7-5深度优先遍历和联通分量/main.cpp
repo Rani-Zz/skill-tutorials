@@ -22,11 +22,11 @@ class Component{
 			id[v] = count;
 			
 			typename Graph::adjIterator adj(g,v);
-			for(int i = adj.begin();i!=adj.end();i = adg.next())
+			for(int i = adj.begin();i!=adj.end();i = adj.next())
 			{
 				if(!visited[i])
 				{
-					dif(i);
+					dfs(i);
 				}
 			}
 		}
@@ -75,6 +75,7 @@ class Component{
 		  	return id[v]==id[w];
 		  } 
 };
+
 int main() {
     
 	return 0;
