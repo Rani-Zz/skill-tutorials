@@ -1,0 +1,23 @@
+class Solution {
+public:
+    /**
+    *记录每一步可到达的最大index
+    *初始值为0 遍历终止到可到达的最大index
+    *直到可到达的最大index>=n-1时为true
+    */
+    bool canJump(vector<int>& nums) {
+        if(nums.size()<=1)
+            return true;
+        int maxJump = 0;
+        int n = nums.size();
+        for(int i = 0;i<n&&i<=maxJump;i++)
+        {
+            maxJump = max(maxJump,i+nums[i]);
+            if(maxJump>=n-1)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+};
