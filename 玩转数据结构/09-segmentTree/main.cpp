@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 using namespace std;
+//创建线段树，node为线段树中的结点。保存arr中[start...end]间的信息 
 void build_tree(vector<int> arr,vector<int> &tree,int node,int start,int end)
 {
 	if(start==end)
@@ -19,11 +20,12 @@ void build_tree(vector<int> arr,vector<int> &tree,int node,int start,int end)
 	tree[node] = tree[left_node]+tree[right_node];
 	return; 
 }
+//更新线段是结点，arr[index] = val 
 void update_tree(vector<int>& arr,vector<int>& tree,int node,int start,int end,int index,int val)
 {
 	if(start==end)
 	{
-		arr[index]=val;
+		arr[index] = val;
 		tree[node] = val;
 		return;
 	}
